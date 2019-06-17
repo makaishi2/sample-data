@@ -1,0 +1,6 @@
+{"fields": ["Survived","Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked"], "values": [
+[null,3,"male",34.5,0,0,7.8292,"Q"], 
+[null,3,"female",22.0,1,1,12.2875,"S"],
+[null,1,"male",55.0,1,0,59.4,"C"],
+[null,1,"female",23.0,1,0,82.2667,"S"]
+]}
