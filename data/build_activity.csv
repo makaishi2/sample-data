@@ -1,0 +1,11 @@
+Activity,Duration in days,Preceding activities
+"masonry",35,
+"carpentry",15,"masonry"
+"plumbing",40,"masonry"
+"ceiling",15,"masonry"
+"roofing",5,"carpentry"
+"painting",10,"ceiling"
+"windows",5,"roofing"
+"facade",10,"roofing, plumbing"
+"garden",5,"roofing, plumbing"
+"moving",5,"windows, facade,garden, painting"
