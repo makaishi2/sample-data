@@ -1,0 +1,142 @@
+[
+    {
+        "id": "5011cd39.1ac194",
+        "type": "function",
+        "z": "abcbce41.9ec42",
+        "name": "token取得準備",
+        "func": "// header設定\nmsg.headers = {};\nmsg.headers['Accept'] = \"application/json\";\nmsg.headers['Content-Type'] = \"application/x-www-form-urlencoded\";\n\n// apikey設定\nvar apikey = \"xxxx\";\nmsg.payload = \"apikey=\" + apikey + \"&grant_type=urn:ibm:params:oauth:grant-type:apikey\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "9e9ed947.75a1d8"
+            ]
+        ]
+    },
+    {
+        "id": "b5e15849.329db8",
+        "type": "inject",
+        "z": "abcbce41.9ec42",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "5011cd39.1ac194"
+            ]
+        ]
+    },
+    {
+        "id": "9e9ed947.75a1d8",
+        "type": "http request",
+        "z": "abcbce41.9ec42",
+        "name": "Token取得",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://iam.cloud.ibm.com/identity/token",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 230,
+        "y": 200,
+        "wires": [
+            [
+                "faf42f02.54b35"
+            ]
+        ]
+    },
+    {
+        "id": "faf42f02.54b35",
+        "type": "function",
+        "z": "abcbce41.9ec42",
+        "name": "API呼び出し準備",
+        "func": "// token取得\nvalue = JSON.parse(msg.payload);\nconsole.log(value);\nconsole.log(value[\"access_token\"]);\nvar token = value.access_token;\n\n// header設定\nmsg.headers = {};\nmsg.headers['Content-Type'] = \"application/json\";\nmsg.headers['Authorization'] = 'Bearer ' + token;\n\n// data設定\nmsg.payload = '{\"input_data\": [{\"values\": [[6.9, 3.1, 5.4, 2.1], [4.4, 2.9, 1.4, 0.2]]}]}'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [
+                "3446347a.90f4ec"
+            ]
+        ]
+    },
+    {
+        "id": "3446347a.90f4ec",
+        "type": "http request",
+        "z": "abcbce41.9ec42",
+        "name": "API呼び出し",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "xxxx",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 630,
+        "y": 200,
+        "wires": [
+            [
+                "284c68ff.d9e088"
+            ]
+        ]
+    },
+    {
+        "id": "284c68ff.d9e088",
+        "type": "json",
+        "z": "abcbce41.9ec42",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 400,
+        "y": 280,
+        "wires": [
+            [
+                "de7c3dca.00c0a"
+            ]
+        ]
+    },
+    {
+        "id": "de7c3dca.00c0a",
+        "type": "debug",
+        "z": "abcbce41.9ec42",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 280,
+        "wires": []
+    }
+]
