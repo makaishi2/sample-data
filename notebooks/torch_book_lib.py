@@ -3,6 +3,20 @@
 # テスト用
 SAMPLE = 'abc123'
 
+import numpy as np
+import matplotlib.pyplot as plt
+import japanize_matplotlib
+
+import torch
+from torch import tensor
+import torch.nn as nn
+import torch.optim as optim
+from torchsummary import summary
+from torchviz import make_dot
+import torchvision.transforms as transforms
+from torch.utils.data import Dataset, DataLoader
+import torchvision.datasets as datasets
+
 # 損失関数値計算用
 def eval_loss(loader, device, net, criterion):
   
