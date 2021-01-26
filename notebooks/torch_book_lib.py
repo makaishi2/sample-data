@@ -1,5 +1,8 @@
 # 共通関数定義
 
+# テスト用
+SAMPLE = 'abc123'
+
 # 損失関数値計算用
 def eval_loss(loader, device, net, criterion):
   
