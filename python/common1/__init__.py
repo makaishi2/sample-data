@@ -3,6 +3,11 @@
 # テスト用
 SAMPLE = 'abc123'
 
+import pip, site, importlib
+pip.main(['install', 'japanize_matplotlib'])
+pip.main(['install', 'torchviz'])
+importlib.reload(site) 
+
 import numpy as np
 import matplotlib.pyplot as plt
 import japanize_matplotlib
