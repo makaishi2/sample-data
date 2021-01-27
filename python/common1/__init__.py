@@ -145,7 +145,7 @@ def evaluate_history(history):
   plt.show()
   
 # 予測結果表示
-def show_predict_result(net, loader, classes, plt):
+def show_predict_result(net, loader, classes, device, plt):
 
   # DataLoaderから最初の1セットを取得する
   images, labels = next(iter(loader))
