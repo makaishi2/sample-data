@@ -4,8 +4,14 @@
 SAMPLE = 'abc123'
 
 import pip, site, importlib
-pip.main(['install', 'japanize_matplotlib'])
-pip.main(['install', 'torchviz'])
+def install(package):
+    if hasattr(pip, 'main'):
+        pip.main(['install', package])
+    else:
+        pip._internal.main(['install', package])
+
+install('japanize_matplotlib')
+install('torchviz')
 importlib.reload(site) 
 
 import numpy as np
